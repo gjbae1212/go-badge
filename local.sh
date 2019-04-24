@@ -7,8 +7,8 @@ CURRENT=`pwd`
 
 function test
 {
-   go test -v $(go list ./... | grep -v vendor) --count 1
    go test -bench=. $(go list ./... | grep -v vendor) -benchmem
+   go test -v $(go list ./... | grep -v vendor) --count 1 -race -coverprofile=$CURRENT/coverage.txt -covermode=atomic
 }
 
 function codecov
