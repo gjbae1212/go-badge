@@ -7,6 +7,10 @@ import (
 	"strings"
 	"sync"
 	"testing"
+
+	"fmt"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestBadgeDrawerRender(t *testing.T) {
@@ -57,6 +61,18 @@ func TestBadgeDrawerRenderBytes(t *testing.T) {
 	if string(bytes) != output {
 		t.Errorf("expect %q got %q", output, string(bytes))
 	}
+}
+
+func TestBadgeInterface(t *testing.T) {
+	assert := assert.New(t)
+
+	buffer := new(bytes.Buffer)
+	err := Render("godoc", "reference", "#5272B4", buffer)
+	assert.NoError(err)
+	fmt.Println(buffer.String())
+
+	_, err = RenderBytes("godoc", "reference", "#5272B4")
+	assert.NoError(err)
 }
 
 func BenchmarkRender(b *testing.B) {
