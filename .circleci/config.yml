@@ -4,7 +4,7 @@ jobs:
     working_directory: /go/src/github.com/gjbae1212/go-badge
 
     docker:
-    - image: golang:1.12
+    - image: golang:1.14
 
     environment:
       GOPATH: /go
